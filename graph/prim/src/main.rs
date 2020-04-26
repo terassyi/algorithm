@@ -60,7 +60,6 @@ impl Graph {
                     res += v.cost;
                     used[v.to] = true;
                     queue.push(*v);
-                    println!("from: {} to {} cost {:?}", vertex.to, v.to, v.cost);
                     break;
                 }
             }

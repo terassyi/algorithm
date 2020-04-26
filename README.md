@@ -25,3 +25,4 @@ AtCoder ABCを解いてみる．
 木構造を実装してみる
 - binary tree
 - priority queue
+- union find tree
