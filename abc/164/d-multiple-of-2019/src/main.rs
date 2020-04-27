@@ -1,38 +1,23 @@
 fn main() {
-    println!("{:?}", solve(input()));
+    println!("{:?}", solve2(input()));
 }
 
-fn input() -> String {
+fn input() -> Vec<u32> {
     let mut buf = String::new();
     std::io::stdin().read_line(&mut buf).unwrap();
     buf.pop();
-    buf
+    buf.chars().map(|c| c as u32 - 48).collect()
 }
 
-fn solve(num: String) -> u64 {
-    let mut counter: u64 = 0;
-    for i in 0..num.len()-3 {
-        for j in i+4..num.len()+1 {
-            let n: u64 = num[i..j].parse().unwrap();
-            
-            if n % 2019 == 0 {
-                counter += 1;
-            }
-        }
-    }
-    counter
-}
-
-fn solve2(num: String) -> u64 {
+fn solve2(num: Vec<u32>) -> u32 {
     let mut counter = 0;
     for i in 0..num.len()-3 {
-        let mut n: u64 = num[i..i+4].parse().unwrap();
+        let mut n: u32 = num[i] * 1000 + num[i+1] * 100 + num[i+2] * 10 + num[i+3];
         n = n % 2019;
         if n == 0 {
             counter += 1;
         }
-        for c in num[i+4..].chars() {
-            let k: u64 = (c as i32 - 48) as u64;
+        for k in num[i+4..].iter() {
             n = (n * 10 + k) % 2019;
             if n == 0 {
                 counter += 1;
@@ -44,15 +29,10 @@ fn solve2(num: String) -> u64 {
 
 #[cfg(test)]
 mod tests {
-    #[test]
-    fn test_solve1() {
-        let num = String::from("1817181712114");
-        assert_eq!(super::solve(num), 3);
-    }
-
+    
     #[test]
     fn test_solve2() {
-        let num = String::from("14282668646");
-        assert_eq!(super::solve2(num), 2);
+        let num: Vec<u32> = vec![1,8,1,7,1,8,1,7,1,2,1,1,4];
+        assert_eq!(super::solve2(num), 3);
     }
 }
