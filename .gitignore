@@ -1,3 +1,4 @@
 *target/
 *Cargo.lock
 *.idea
+/list/a.out
