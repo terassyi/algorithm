@@ -38,7 +38,7 @@ fi
 LEN=`expr ${#IN_FILES[@]} - 1`
 for i in `seq 0 $LEN`; do
   I=`expr ${i} + 1`
-  python $SOLVER < ${IN_FILES[$i]} > tmp;
+  python3 $SOLVER < ${IN_FILES[$i]} > tmp;
   sed 's/ \s*$//' tmp > out;
   RET=`diff ${OUT_FILES[$i]} out`;
   if [ $? -eq 0 ]; then
